@@ -1,162 +1,133 @@
-import React from 'react';
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
-// Inline CSS as JavaScript object
-const styles = {
-  container: {
-    display: 'flex',
-    width:"100%"
-  },
-  formContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px',
-    width:"100%"
-  },
-  formContent: {
-    maxWidth: '400px',
-    width: '100%',
-  },
-  title: {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: 'black',
-    textAlign: 'left',
-  },
-  subtitle: {
-    marginTop: '10px',
-    fontSize: '16px',
-    color: 'gray',
-    textAlign: 'left',
-  },
-  link: {
-    color: 'black',
-    fontWeight: 'medium',
-    textDecoration: 'none',
-  },
-  linkHover: {
-    textDecoration: 'underline',
-  },
-  form: {
-    marginTop: '20px',
-  },
-  formGroup: {
-    marginBottom: '15px',
-  },
-  label: {
-    fontSize: '14px',
-    fontWeight: 'medium',
-    color: 'gray',
-    textAlign: 'left',
-    display: 'block',
-    marginBottom: '5px',
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    fontSize: '14px',
-    border: '1px solid gray',
-    borderRadius: '4px',
-    outline: 'none',
-  },
-  inputFocus: {
-    borderColor: 'black',
-  },
-  button: {
-    width: '100%',
-    padding: '10px',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: 'black',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  buttonHover: {
-    backgroundColor: '#333',
-  },
-  imageContainer: {
-    width: '100%',
-    height: '100%',
-  },
-  image: {
-    width: '50%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-};
-
-// React Component
-const SignUpAdmin = () => {
+function Copyright(props) {
   return (
-    <section>
-      <div style={styles.container}>
-        <div style={styles.formContainer}>
-          <div style={styles.formContent}>
-            <h2 style={styles.title}>Sign up admin</h2>
-            <p style={styles.subtitle}>
-              Already have an account?{' '}
-              <a href="#" style={styles.link} onMouseOver={(e) => e.currentTarget.style.textDecoration = styles.linkHover.textDecoration} onMouseOut={(e) => e.currentTarget.style.textDecoration = styles.link.textDecoration}>
-                Sign In
-              </a>
-            </p>
-            <form action="#" method="POST" style={styles.form}>
-              <div style={styles.formGroup}>
-                <label htmlFor="name" style={styles.label}>
-                  Full Name
-                </label>
-                <input
-                  style={styles.input}
-                  type="text"
-                  placeholder="Full Name"
-                  id="name"
-                  onFocus={(e) => e.currentTarget.style.borderColor = styles.inputFocus.borderColor}
-                  onBlur={(e) => e.currentTarget.style.borderColor = styles.input.borderColor}
-                />
-              </div>
-              <div style={styles.formGroup}>
-                <label htmlFor="email" style={styles.label}>
-                  Email address
-                </label>
-                <input
-                  style={styles.input}
-                  type="email"
-                  placeholder="Email"
-                  id="email"
-                  onFocus={(e) => e.currentTarget.style.borderColor = styles.inputFocus.borderColor}
-                  onBlur={(e) => e.currentTarget.style.borderColor = styles.input.borderColor}
-                />
-              </div>
-              <div style={styles.formGroup}>
-                <label htmlFor="password" style={styles.label}>
-                  Password
-                </label>
-                <input
-                  style={styles.input}
-                  type="password"
-                  placeholder="Password"
-                  id="password"
-                  onFocus={(e) => e.currentTarget.style.borderColor = styles.inputFocus.borderColor}
-                  onBlur={(e) => e.currentTarget.style.borderColor = styles.input.borderColor}
-                />
-              </div>
-              <div style={styles.formGroup}>
-                <button
-                  type="button"
-                  style={styles.button}
-                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = styles.buttonHover.backgroundColor}
-                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = styles.button.backgroundColor}
-                >
-                  Create Account
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
-};
+}
 
-export default SignUpAdmin;
+// TODO remove, this demo shouldn't need to reset the theme.
+
+const defaultTheme = createTheme();
+
+export default function SignUpAdmin() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="#" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </Container>
+    </ThemeProvider>
+  );
+}
