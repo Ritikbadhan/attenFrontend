@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Inline CSS as JavaScript object
 const styles = {
@@ -96,10 +97,8 @@ const SignUpUser = () => {
           <div style={styles.formContent}>
             <h2 style={styles.title}>Sign up</h2>
             <p style={styles.subtitle}>
-              Already have an account?{' '}
-              <a href="#" style={styles.link} onMouseOver={(e) => e.currentTarget.style.textDecoration = styles.linkHover.textDecoration} onMouseOut={(e) => e.currentTarget.style.textDecoration = styles.link.textDecoration}>
-                Sign In
-              </a>
+              <Link to="/signup-admin">Sign up Admin</Link>
+                
             </p>
             <form action="#" method="POST" style={styles.form}>
               <div style={styles.formGroup}>
