@@ -12,7 +12,20 @@ import AddIcon from '@mui/icons-material/Add';
 
 const drawerWidth = 240;
 
-const AdminDrawer = () => {
+const AdminDrawer = ({setSelectedTab,selectedTab}) => {
+
+  const listItems = [
+    { text: 'All Users', icon: <PeopleIcon /> },
+    { text: 'Other Admins', icon: <PeopleIcon /> },
+    { text: 'Attendance Records', icon: <PeopleIcon /> },
+    { text: 'Make Admin', icon: <AddIcon /> },
+    { text: 'Add User', icon: <AddIcon /> },
+  ];
+
+  const handleListItemClick = (event, index) => {
+    setSelectedTab(index);
+  };
+
   return (
     <Drawer
       variant="permanent"
@@ -25,37 +38,18 @@ const AdminDrawer = () => {
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="All Users" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Other Admins" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Attendance Records" />
-          </ListItem>
+          {listItems.map((item, index) => (
+            <ListItem
+              button
+              key={index}
+              selected={selectedTab === index}
+              onClick={(event) => handleListItemClick(event, index)}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItem>
+          ))}
           <Divider />
-          <ListItem button>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary="Make Admin" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <AddIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add User" />
-          </ListItem>
         </List>
       </Box>
     </Drawer>
